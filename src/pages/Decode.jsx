@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react'; 
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
@@ -12,11 +11,12 @@ export default function Decode() {
   const canvasRef = useRef(null);
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: {'image/*': ['.png', '.jpg', '.jpeg']},
+    accept: {'image/*': ['.png', '.jpg', '.jpeg', '.webp']},
     maxFiles: 1,
     onDrop: async (acceptedFiles) => {
       if (!acceptedFiles.length) return;
       setFile(acceptedFiles[0]);
+      setExtractedText('');
       toast.success('File uploaded!');
     },
   });
@@ -26,7 +26,6 @@ export default function Decode() {
     setExtractedText('');
     toast.info('File removed');
   };
-
 
   const handleDecode = async () => {
     if (!file) {
@@ -52,11 +51,12 @@ export default function Decode() {
       toast.success('Secret text extracted!');
     } catch (error) {
       toast.error(`Error: ${error.message}`);
+      setExtractedText('');
     } finally {
       setIsProcessing(false);
     }
   };
-/// 
+
   return (
     <div className="space-y-6">
       {!file ? (
@@ -91,13 +91,56 @@ export default function Decode() {
               alt="Preview" 
               className="max-h-64 w-auto mx-auto rounded-md shadow-sm"
             />
+            <p className="mt-2 text-sm text-center text-gray-600">
+              {file.name}
+            </p>
           </div>
 
-          {/* ... rest of the decode UI ... */}
+          <button
+            onClick={handleDecode}
+            disabled={isProcessing || !file}
+            className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-colors duration-200 ${
+              isProcessing 
+                ? 'bg-purple-400 cursor-not-allowed' 
+                : 'bg-purple-600 hover:bg-purple-700'
+            } flex items-center justify-center`}
+          >
+            {isProcessing ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Decoding...
+              </>
+            ) : (
+              'Extract Hidden Text'
+            )}
+          </button>
+
+          {extractedText && (
+            <div className="bg-gray-100 p-4 rounded-lg">
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-sm font-medium">Hidden Message</label>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(extractedText);
+                    toast.success('Copied to clipboard!');
+                  }}
+                  className="text-xs text-blue-600 hover:text-blue-800"
+                >
+                  Copy
+                </button>
+              </div>
+              <div className="p-3 bg-white rounded-lg border font-mono whitespace-pre-wrap">
+                {extractedText}
+              </div>
+            </div>
+          )}
         </>
       )}
 
-      {/* ... rest of the component ... */}
+      <canvas ref={canvasRef} className="hidden" />
     </div>
   );
 }
