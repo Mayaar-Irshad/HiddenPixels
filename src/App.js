@@ -1,20 +1,18 @@
-
+// App.js
 import './App.css';
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
-import Encode from './pages/Encode';
-import Decode from './pages/Decode';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/encode" element={<Encode />} />
-        <Route path="/decode" element={<Decode />} />
-      </Routes>
+      <Navbar />
+      <Home />
+      <Footer />
     </Router>
   );
 }
+
 export default App;
