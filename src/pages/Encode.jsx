@@ -61,8 +61,9 @@ export default function Encode() {
       {!file ? (
         <div 
           {...getRootProps()} 
-          className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:bg-gray-50 hover:border-blue-400 transition-colors duration-200"
-        >
+            className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer 
+              transition-all duration-300 hover:border-blue-500 hover:bg-white/50 hover:shadow-sm"
+          > 
           <input {...getInputProps()} />
           <div className="flex flex-col items-center justify-center space-y-2">
             <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,22 +106,22 @@ export default function Encode() {
             <textarea
               value={secretText}
               onChange={(e) => setSecretText(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 
+                focus:border-blue-500 transition-all duration-300 placeholder-gray-400"
               rows="4"
-              placeholder="Enter the text you want to hide..."
+              placeholder="Enter your secret message here..."
               maxLength="1000"
             />
           </div>
 
           <button
-            onClick={handleEncode}
-            disabled={isProcessing}
-            className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-colors duration-200 ${
-              isProcessing 
-                ? 'bg-blue-400 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700'
-            } flex items-center justify-center`}
-          >
+              onClick={handleEncode}
+              disabled={isProcessing}
+              className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all 
+                duration-300 ${isProcessing ? 'opacity-75 cursor-not-allowed' : ''} 
+                bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+                shadow-lg hover:shadow-xl flex items-center justify-center space-x-2`}
+            >
             {isProcessing ? (
               <>
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

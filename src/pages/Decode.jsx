@@ -62,7 +62,8 @@ export default function Decode() {
       {!file ? (
         <div 
           {...getRootProps()} 
-          className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:bg-gray-50 hover:border-blue-400 transition-colors duration-200"
+          className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer 
+            transition-all duration-300 hover:border-blue-500 hover:bg-white/50 hover:shadow-sm"
         >
           <input {...getInputProps()} />
           <div className="flex flex-col items-center justify-center space-y-2">
@@ -97,14 +98,13 @@ export default function Decode() {
           </div>
 
           <button
-            onClick={handleDecode}
-            disabled={isProcessing || !file}
-            className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-colors duration-200 ${
-              isProcessing 
-                ? 'bg-purple-400 cursor-not-allowed' 
-                : 'bg-purple-600 hover:bg-purple-700'
-            } flex items-center justify-center`}
-          >
+              onClick={handleDecode}
+              disabled={isProcessing}
+              className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all 
+                duration-300 ${isProcessing ? 'opacity-75 cursor-not-allowed' : ''} 
+                bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+                shadow-lg hover:shadow-xl flex items-center justify-center space-x-2`}
+            >
             {isProcessing ? (
               <>
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -119,20 +119,23 @@ export default function Decode() {
           </button>
 
           {extractedText && (
-            <div className="bg-gray-100 p-4 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <label className="block text-sm font-medium">Hidden Message</label>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="p-4 border-b flex justify-between items-center bg-gray-50">
+                <span className="font-semibold text-gray-700">Hidden Message</span>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(extractedText);
                     toast.success('Copied to clipboard!');
                   }}
-                  className="text-xs text-blue-600 hover:text-blue-800"
+                  className="flex items-center space-x-1 text-blue-600 hover:text-blue-800"
                 >
-                  Copy
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                  <span className="text-sm">Copy</span>
                 </button>
               </div>
-              <div className="p-3 bg-white rounded-lg border font-mono whitespace-pre-wrap">
+              <div className="p-4 font-mono text-gray-800 whitespace-pre-wrap bg-white">
                 {extractedText}
               </div>
             </div>
