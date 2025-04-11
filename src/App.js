@@ -8,9 +8,13 @@ import Home from './pages/Home';
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Home />
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Home />
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

@@ -6,7 +6,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('encode');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-50">
+    <div className=" bg-gradient-to-br from-gray-50 to-indigo-50 mb-auto">
       <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="flex border-b">
