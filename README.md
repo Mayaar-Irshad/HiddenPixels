@@ -14,7 +14,6 @@ Built with **React.js**, **TailwindCSS**, and the **Canvas API**.
 - 🖼️ Drag & drop image upload (.png, .jpg, .jpeg)
 - ✍️ Embed secret text into image pixels
 - 🔍 Extract hidden text from stego images
-- 🌗 Dark mode support
 - 💾 Download stego image after encoding
 - 📱 Responsive and smooth UI
 
