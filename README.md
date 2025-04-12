@@ -4,8 +4,9 @@
 A modern web-based **steganography tool** to securely hide and extract secret messages inside image files using **LSB (Least Significant Bit)** encoding.
 
 Built with **React.js**, **TailwindCSS**, and the **Canvas API**.
+---
+![image](https://github.com/user-attachments/assets/a847d2fc-a610-4f05-8089-61b477257ef7)
 
-![image](https://github.com/user-attachments/assets/1ece08d6-6cbd-4ea3-86ef-7c304214e4b9)
 ---
 
 ## ✨ Features
