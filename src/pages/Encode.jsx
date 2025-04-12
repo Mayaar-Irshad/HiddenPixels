@@ -1,3 +1,4 @@
+// Encode.jsx
 import { useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
@@ -61,25 +62,26 @@ export default function Encode() {
       {!file ? (
         <div 
           {...getRootProps()} 
-            className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer 
-              transition-all duration-300 hover:border-blue-500 hover:bg-white/50 hover:shadow-sm"
-          > 
+          className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center cursor-pointer 
+          transition-all duration-300 hover:border-blue-500 hover:bg-white/50 hover:shadow-sm 
+          hover:scale-[1.01] active:scale-[0.99] transform"
+        > 
           <input {...getInputProps()} />
           <div className="flex flex-col items-center justify-center space-y-2">
-            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-12 h-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <p className="text-gray-600">Drag & drop an image file here, or click to select</p>
-            <p className="text-xs text-gray-400">Supports: PNG, JPG, JPEG</p>
+            <p className="text-gray-600 dark:text-gray-400">Drag & drop an image file here, or click to select</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">Supports: PNG, JPG, JPEG</p>
           </div>
         </div>
       ) : (
         <>
-          <div className="bg-white p-4 rounded-lg border border-gray-200 relative">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Image Preview</label>
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 relative">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image Preview</label>
             <button
               onClick={handleRemoveFile}
-              className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               title="Remove file"
             >
               <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,23 +93,23 @@ export default function Encode() {
               alt="Preview" 
               className="max-h-64 w-auto mx-auto rounded-md shadow-sm"
             />
-            <p className="mt-2 text-sm text-center text-gray-600">
+            <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400 break-words">
               {file.name}
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Secret Message
-              <span className="ml-1 text-xs text-gray-500">
-                ({secretText.length} characters)
-              </span>
+              <span className="ml-1 text-xs text-gray-500">({secretText.length} characters)</span>
             </label>
             <textarea
               value={secretText}
               onChange={(e) => setSecretText(e.target.value)}
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 
-                focus:border-blue-500 transition-all duration-300 placeholder-gray-400"
+              className="w-full p-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl 
+              focus:ring-4 focus:ring-blue-100 dark:focus:ring-blue-900 
+              focus:border-blue-500 dark:bg-gray-800 dark:text-white 
+              transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
               rows="4"
               placeholder="Enter your secret message here..."
               maxLength="1000"
@@ -115,13 +117,14 @@ export default function Encode() {
           </div>
 
           <button
-              onClick={handleEncode}
-              disabled={isProcessing}
-              className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all 
-                duration-300 ${isProcessing ? 'opacity-75 cursor-not-allowed' : ''} 
-                bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
-                shadow-lg hover:shadow-xl flex items-center justify-center space-x-2`}
-            >
+            onClick={handleEncode}
+            disabled={isProcessing}
+            className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition 
+              duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:brightness-110 
+              focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg hover:shadow-xl 
+              flex items-center justify-center space-x-2 
+              ${isProcessing ? 'opacity-75 cursor-not-allowed' : ''}`}
+          >
             {isProcessing ? (
               <>
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

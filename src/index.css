@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes subtle-move {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(3px); }
+}
+
+.animated-bg {
+  animation: subtle-move 10s ease-in-out infinite;
+  background-image: radial-gradient(circle at 25% 25%, #f0f9ff, #e0f2fe);
+}
