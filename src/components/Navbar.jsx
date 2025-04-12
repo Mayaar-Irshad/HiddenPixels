@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-lg text-gray-800 dark:text-gray-100">
+    <nav className="bg-white  text-gray-800 ">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -26,12 +26,7 @@ export default function Navbar() {
             <span className="hidden sm:inline text-sm">Secure Message Encoding</span>
             <span className="text-blue-600">•</span>
             <span className="text-sm font-medium">Steganography Tool</span>
-            <button
-              onClick={() => document.documentElement.classList.toggle('dark')}
-              className="ml-4 text-sm px-2 py-1 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              🌓 Theme
-            </button>
+            
           </div>
         </div>
       </div>

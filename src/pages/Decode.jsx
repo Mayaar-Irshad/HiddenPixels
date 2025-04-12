@@ -63,26 +63,26 @@ export default function Decode() {
       {!file ? (
         <div
           {...getRootProps()}
-          className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center cursor-pointer 
+          className="border-2 border-dashed border-gray-300  rounded-xl p-8 text-center cursor-pointer 
             transition-all duration-300 hover:border-blue-500 hover:bg-white/50 hover:shadow-sm 
             hover:scale-[1.01] active:scale-[0.99] transform"
         >
           <input {...getInputProps()} />
           <div className="flex flex-col items-center justify-center space-y-2">
-            <svg className="w-12 h-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-12 h-12 text-gray-400 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <p className="text-gray-600 dark:text-gray-400">Drag & drop an image file here, or click to select</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">Supports: PNG, JPG, JPEG</p>
+            <p className="text-gray-600 ">Drag & drop an image file here, or click to select</p>
+            <p className="text-xs text-gray-400 ">Supports: PNG, JPG, JPEG</p>
           </div>
         </div>
       ) : (
         <>
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 relative">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image Preview</label>
+          <div className="bg-white  p-4 rounded-lg border border-gray-200  relative">
+            <label className="block text-sm font-medium text-gray-700  mb-2">Image Preview</label>
             <button
               onClick={handleRemoveFile}
-              className="absolute top-2 right-2 p-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="absolute top-2 right-2 p-1 rounded-full bg-gray-100  hover:bg-gray-200  transition-colors"
               title="Remove file"
             >
               <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@ export default function Decode() {
               alt="Preview"
               className="max-h-64 w-auto mx-auto rounded-md shadow-sm"
             />
-            <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-400 break-words">{file.name}</p>
+            <p className="mt-2 text-sm text-center text-gray-600  break-words">{file.name}</p>
           </div>
 
           <button
@@ -130,15 +130,15 @@ export default function Decode() {
           </button>
 
           {extractedText && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-              <div className="p-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-700">
-                <span className="font-semibold text-gray-700 dark:text-gray-100">Hidden Message</span>
+            <div className="bg-white  rounded-xl shadow-md overflow-hidden">
+              <div className="p-4 border-b border-gray-100  flex justify-between items-center bg-gray-50 ">
+                <span className="font-semibold text-gray-700 ">Hidden Message</span>
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(extractedText);
                     toast.success('Copied to clipboard!');
                   }}
-                  className="flex items-center space-x-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                  className="flex items-center space-x-1 text-blue-600  hover:text-blue-800 "
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -152,7 +152,7 @@ export default function Decode() {
                   <span className="text-sm">Copy</span>
                 </button>
               </div>
-              <div className="p-4 font-mono text-gray-800 dark:text-gray-200 whitespace-pre-wrap bg-white dark:bg-gray-800">
+              <div className="p-4 font-mono text-gray-800  whitespace-pre-wrap bg-white ">
                 {extractedText}
               </div>
             </div>
