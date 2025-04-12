@@ -1,4 +1,5 @@
 // Encode.jsx
+// Component to hide secret text into an image using LSB encoding
 import { useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
@@ -10,7 +11,8 @@ export default function Encode() {
   const [secretText, setSecretText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const canvasRef = useRef(null);
-
+  
+  // Handle file drop and selection
   const { getRootProps, getInputProps } = useDropzone({
     accept: {'image/*': ['.png', '.jpg', '.jpeg']},
     maxFiles: 1,
@@ -20,12 +22,14 @@ export default function Encode() {
       toast.success('File uploaded successfully!');
     },
   });
-
+  
+  // Reset uploaded file by removing the uploaded file
   const handleRemoveFile = () => {
     setFile(null);
     toast.info('File removed');
   };
-
+  
+  // Encode and download stego-image
   const handleEncode = async () => {
     if (!file || !secretText) {
       toast.error('Please upload a file and enter secret text');
@@ -56,10 +60,12 @@ export default function Encode() {
       setIsProcessing(false);
     }
   };
-
+  /////////
   return (
     <div className="space-y-6">
+    {/* Upload UI or Preview & Encode */}
       {!file ? (
+        // Upload prompt
         <div 
           {...getRootProps()} 
           className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer 
@@ -77,6 +83,7 @@ export default function Encode() {
         </div>
       ) : (
         <>
+        {/* Preview uploaded image and remove option */}
           <div className="bg-white  p-4 rounded-lg border border-gray-200 ">
             <label className="block text-sm font-medium text-gray-700 ">Image Preview</label>
             <button
@@ -97,7 +104,8 @@ export default function Encode() {
               {file.name}
             </p>
           </div>
-
+          
+          {/* Input for secret message */}
           <div>
             <label className="block text-sm font-medium text-gray-700 ">
               Secret Message
@@ -115,7 +123,8 @@ export default function Encode() {
               maxLength="1000"
             />
           </div>
-
+          
+          {/* Encode button */}
           <button
             onClick={handleEncode}
             disabled={isProcessing}
@@ -144,7 +153,8 @@ export default function Encode() {
           </button>
         </>
       )}
-
+      
+      {/* Hidden canvas used for processing */}
       <canvas ref={canvasRef} className="hidden" />
     </div>
   );

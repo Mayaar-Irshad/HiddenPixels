@@ -1,11 +1,12 @@
 // Navbar.jsx
-import { Link } from 'react-router-dom';
 
+// Navigation bar for branding and page title
 export default function Navbar() {
   return (
     <nav className="bg-white  text-gray-800 ">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
+        {/* Logo and App Name */}
           <div className="flex items-center space-x-3">
             <svg 
               className="w-7 h-7 text-blue-600" 
@@ -22,6 +23,7 @@ export default function Navbar() {
             </svg>
             <span className="text-xl font-bold">HiddenPixels</span>
           </div>
+          {/* App subtitle */}
           <div className="flex items-center space-x-2">
             <span className="hidden sm:inline text-sm">Secure Message Encoding</span>
             <span className="text-blue-600">•</span>

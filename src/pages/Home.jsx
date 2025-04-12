@@ -3,9 +3,11 @@ import { useState } from 'react';
 import Encode from './Encode';
 import Decode from './Decode';
 
+// Main homepage containing tabs for Encode and Decode functionality
 export default function Home() {
   const [activeTab, setActiveTab] = useState('encode');
-
+  
+   // Top hero/banner section
   const HeroSection = () => (
     <div className="text-center py-10">
       <h1 className="text-4xl font-extrabold text-gray-800 ">🔐 HiddenPixels</h1>
@@ -19,9 +21,11 @@ export default function Home() {
     <div className="bg-gray-50 mb-auto">
 
       <HeroSection />
+      {/* Tabs for switching between Encode and Decode */}
       <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
         <div className="bg-white  rounded-2xl shadow-xl overflow-hidden">
           <div className="flex border-b ">
+          {/* Encode Tab Button */}
             <button
               className={`flex-1 py-5 px-6 text-center font-semibold transition-all duration-300 ease-in-out ${
                 activeTab === 'encode' 
@@ -32,6 +36,7 @@ export default function Home() {
             >
               Hide Message
             </button>
+            {/* Decode Tab Button */}
             <button
               className={`flex-1 py-5 px-6 text-center font-semibold transition-all duration-300 ease-in-out ${
                 activeTab === 'decode' 
@@ -43,7 +48,8 @@ export default function Home() {
               Extract Message
             </button>
           </div>
-
+          
+          {/* Tab Content */}
           <div className="p-6 sm:p-8">
             <div className="mb-8 text-center">
               <h2 className="text-3xl font-bold text-gray-800 ">
@@ -55,6 +61,7 @@ export default function Home() {
                   : 'Discover hidden content in your images'}
               </p>
             </div>
+            {/* Conditional render based on tab */}
             {activeTab === 'encode' ? <Encode /> : <Decode />}
           </div>
         </div>

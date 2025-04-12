@@ -1,4 +1,5 @@
 // Decode.jsx
+// Component to extract hidden text from stego-image using LSB decoding
 import { useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
@@ -10,7 +11,8 @@ export default function Decode() {
   const [extractedText, setExtractedText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const canvasRef = useRef(null);
-
+  
+  // Handle image drop
   const { getRootProps, getInputProps } = useDropzone({
     accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp'] },
     maxFiles: 1,
@@ -21,13 +23,15 @@ export default function Decode() {
       toast.success('File uploaded!');
     },
   });
-
+  
+  // Remove uploaded image
   const handleRemoveFile = () => {
     setFile(null);
     setExtractedText('');
     toast.info('File removed');
   };
-
+  
+  // Decode text from image
   const handleDecode = async () => {
     if (!file) {
       toast.error('Please upload a file first');
@@ -60,6 +64,7 @@ export default function Decode() {
 
   return (
     <div className="space-y-6">
+    {/* Dropzone or decoding result */}
       {!file ? (
         <div
           {...getRootProps()}
@@ -78,6 +83,7 @@ export default function Decode() {
         </div>
       ) : (
         <>
+        {/* Preview and decode action */}
           <div className="bg-white  p-4 rounded-lg border border-gray-200  relative">
             <label className="block text-sm font-medium text-gray-700  mb-2">Image Preview</label>
             <button
@@ -128,7 +134,8 @@ export default function Decode() {
               'Extract Hidden Text'
             )}
           </button>
-
+          
+          {/* Display extracted message */}
           {extractedText && (
             <div className="bg-white  rounded-xl shadow-md overflow-hidden">
               <div className="p-4 border-b border-gray-100  flex justify-between items-center bg-gray-50 ">
